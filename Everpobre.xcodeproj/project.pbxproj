@@ -1,0 +1,500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B003935F2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003935E2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift */; };
+		B02A495720894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02A495620894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift */; };
+		B02BE225207930CD003A9861 /* NoteDetailVC+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02BE224207930CD003A9861 /* NoteDetailVC+Handlers.swift */; };
+		B02BE2272079311B003A9861 /* NoteDetailVC+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02BE2262079311B003A9861 /* NoteDetailVC+ImagePicker.swift */; };
+		B02BE22A207964E8003A9861 /* ModalNotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02BE229207964E8003A9861 /* ModalNotebookViewController.swift */; };
+		B02BE22C20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02BE22B20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift */; };
+		B03C662E2071941A002A60EF /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03C662D2071941A002A60EF /* UIColor+Additions.swift */; };
+		B03C663120719E00002A60EF /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03C663020719E00002A60EF /* UIView+Additions.swift */; };
+		B051EEB02076884300C72812 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051EEAF2076884300C72812 /* CoreDataManager.swift */; };
+		B051EEB220768B7400C72812 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051EEB120768B7400C72812 /* NoteTableViewController.swift */; };
+		B051EEB420768F4400C72812 /* CreateNotebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051EEB320768F4400C72812 /* CreateNotebookViewController.swift */; };
+		B051EEB72076B70B00C72812 /* EnumHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051EEB62076B70B00C72812 /* EnumHelper.swift */; };
+		B051EEB92076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051EEB82076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift */; };
+		B07AFFA820715680004A96BA /* NoteDetailVC+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07AFFA720715680004A96BA /* NoteDetailVC+UI.swift */; };
+		B07F674D20714920009BF8DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F674C20714920009BF8DF /* AppDelegate.swift */; };
+		B07F674F20714920009BF8DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F674E20714920009BF8DF /* ViewController.swift */; };
+		B07F675220714920009BF8DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07F675020714920009BF8DF /* Main.storyboard */; };
+		B07F675520714920009BF8DF /* Everpobre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B07F675320714920009BF8DF /* Everpobre.xcdatamodeld */; };
+		B07F675720714920009BF8DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B07F675620714920009BF8DF /* Assets.xcassets */; };
+		B07F675A20714920009BF8DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07F675820714920009BF8DF /* LaunchScreen.storyboard */; };
+		B07F676320714980009BF8DF /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F676220714980009BF8DF /* NoteDetailViewController.swift */; };
+		B07F676620714A9A009BF8DF /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F676520714A9A009BF8DF /* UIViewController+Additions.swift */; };
+		B0EE100920790D5D009798DA /* NoteTableViewController+CreateNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE100820790D5D009798DA /* NoteTableViewController+CreateNote.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B003935E2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotebookViewController+ModalNotebook.swift"; sourceTree = "<group>"; };
+		B02A495620894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailViewController+ModalNotebookViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		B02BE224207930CD003A9861 /* NoteDetailVC+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailVC+Handlers.swift"; sourceTree = "<group>"; };
+		B02BE2262079311B003A9861 /* NoteDetailVC+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailVC+ImagePicker.swift"; sourceTree = "<group>"; };
+		B02BE229207964E8003A9861 /* ModalNotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNotebookViewController.swift; sourceTree = "<group>"; };
+		B02BE22B20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalNotebookViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		B03C662D2071941A002A60EF /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		B03C663020719E00002A60EF /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
+		B051EEAF2076884300C72812 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B051EEB120768B7400C72812 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
+		B051EEB320768F4400C72812 /* CreateNotebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotebookViewController.swift; sourceTree = "<group>"; };
+		B051EEB62076B70B00C72812 /* EnumHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumHelper.swift; sourceTree = "<group>"; };
+		B051EEB82076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteTableViewController+CreateNotebook.swift"; sourceTree = "<group>"; };
+		B07AFFA720715680004A96BA /* NoteDetailVC+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailVC+UI.swift"; sourceTree = "<group>"; };
+		B07F674920714920009BF8DF /* Everpobre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everpobre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B07F674C20714920009BF8DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B07F674E20714920009BF8DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B07F675120714920009BF8DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B07F675420714920009BF8DF /* Everpobre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Everpobre.xcdatamodel; sourceTree = "<group>"; };
+		B07F675620714920009BF8DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B07F675920714920009BF8DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B07F675B20714920009BF8DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B07F676220714980009BF8DF /* NoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
+		B07F676520714A9A009BF8DF /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
+		B0EE100820790D5D009798DA /* NoteTableViewController+CreateNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteTableViewController+CreateNote.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B07F674620714920009BF8DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B02BE22820796463003A9861 /* ModalNotebook */ = {
+			isa = PBXGroup;
+			children = (
+				B02BE229207964E8003A9861 /* ModalNotebookViewController.swift */,
+				B02BE22B20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift */,
+			);
+			path = ModalNotebook;
+			sourceTree = "<group>";
+		};
+		B03C662B207193CF002A60EF /* UIViewController extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B07F676520714A9A009BF8DF /* UIViewController+Additions.swift */,
+			);
+			path = "UIViewController extensions";
+			sourceTree = "<group>";
+		};
+		B03C662C207193E2002A60EF /* UIColor extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B03C662D2071941A002A60EF /* UIColor+Additions.swift */,
+			);
+			path = "UIColor extensions";
+			sourceTree = "<group>";
+		};
+		B03C662F20719DEC002A60EF /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				B03C663020719E00002A60EF /* UIView+Additions.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		B051EEB52076B6EE00C72812 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B051EEB62076B70B00C72812 /* EnumHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B051EEBA2076C09400C72812 /* NoteDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B07F676220714980009BF8DF /* NoteDetailViewController.swift */,
+				B02A495620894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift */,
+				B07AFFA720715680004A96BA /* NoteDetailVC+UI.swift */,
+				B02BE224207930CD003A9861 /* NoteDetailVC+Handlers.swift */,
+				B02BE2262079311B003A9861 /* NoteDetailVC+ImagePicker.swift */,
+			);
+			path = NoteDetail;
+			sourceTree = "<group>";
+		};
+		B051EEBB2076C0A300C72812 /* NoteTVC */ = {
+			isa = PBXGroup;
+			children = (
+				B051EEB120768B7400C72812 /* NoteTableViewController.swift */,
+				B0EE100820790D5D009798DA /* NoteTableViewController+CreateNote.swift */,
+				B051EEB82076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift */,
+				B003935E2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift */,
+			);
+			path = NoteTVC;
+			sourceTree = "<group>";
+		};
+		B051EEBC2076C0B200C72812 /* CreateNotebook */ = {
+			isa = PBXGroup;
+			children = (
+				B051EEB320768F4400C72812 /* CreateNotebookViewController.swift */,
+			);
+			path = CreateNotebook;
+			sourceTree = "<group>";
+		};
+		B07F674020714920009BF8DF = {
+			isa = PBXGroup;
+			children = (
+				B07F674B20714920009BF8DF /* Everpobre */,
+				B07F674A20714920009BF8DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B07F674A20714920009BF8DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B07F674920714920009BF8DF /* Everpobre.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B07F674B20714920009BF8DF /* Everpobre */ = {
+			isa = PBXGroup;
+			children = (
+				B051EEB52076B6EE00C72812 /* Helpers */,
+				B07F676720714B34009BF8DF /* Assets */,
+				B07F676420714A5B009BF8DF /* UIKitExtensions */,
+				B07F676120714964009BF8DF /* Controllers */,
+				B07F674C20714920009BF8DF /* AppDelegate.swift */,
+				B07F674E20714920009BF8DF /* ViewController.swift */,
+				B07F675020714920009BF8DF /* Main.storyboard */,
+				B07F675620714920009BF8DF /* Assets.xcassets */,
+				B07F675820714920009BF8DF /* LaunchScreen.storyboard */,
+				B07F675B20714920009BF8DF /* Info.plist */,
+				B07F675320714920009BF8DF /* Everpobre.xcdatamodeld */,
+				B051EEAF2076884300C72812 /* CoreDataManager.swift */,
+			);
+			path = Everpobre;
+			sourceTree = "<group>";
+		};
+		B07F676120714964009BF8DF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B02BE22820796463003A9861 /* ModalNotebook */,
+				B051EEBC2076C0B200C72812 /* CreateNotebook */,
+				B051EEBB2076C0A300C72812 /* NoteTVC */,
+				B051EEBA2076C09400C72812 /* NoteDetail */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B07F676420714A5B009BF8DF /* UIKitExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B03C662F20719DEC002A60EF /* UIView */,
+				B03C662C207193E2002A60EF /* UIColor extensions */,
+				B03C662B207193CF002A60EF /* UIViewController extensions */,
+			);
+			path = UIKitExtensions;
+			sourceTree = "<group>";
+		};
+		B07F676720714B34009BF8DF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B07F674820714920009BF8DF /* Everpobre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B07F675E20714920009BF8DF /* Build configuration list for PBXNativeTarget "Everpobre" */;
+			buildPhases = (
+				B07F674520714920009BF8DF /* Sources */,
+				B07F674620714920009BF8DF /* Frameworks */,
+				B07F674720714920009BF8DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Everpobre;
+			productName = Everpobre;
+			productReference = B07F674920714920009BF8DF /* Everpobre.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B07F674120714920009BF8DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Juan Foncuberta";
+				TargetAttributes = {
+					B07F674820714920009BF8DF = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B07F674420714920009BF8DF /* Build configuration list for PBXProject "Everpobre" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B07F674020714920009BF8DF;
+			productRefGroup = B07F674A20714920009BF8DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B07F674820714920009BF8DF /* Everpobre */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B07F674720714920009BF8DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B07F675A20714920009BF8DF /* LaunchScreen.storyboard in Resources */,
+				B07F675720714920009BF8DF /* Assets.xcassets in Resources */,
+				B07F675220714920009BF8DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B07F674520714920009BF8DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B07F674F20714920009BF8DF /* ViewController.swift in Sources */,
+				B02BE22C20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift in Sources */,
+				B07F676320714980009BF8DF /* NoteDetailViewController.swift in Sources */,
+				B051EEB420768F4400C72812 /* CreateNotebookViewController.swift in Sources */,
+				B07F674D20714920009BF8DF /* AppDelegate.swift in Sources */,
+				B051EEB72076B70B00C72812 /* EnumHelper.swift in Sources */,
+				B003935F2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift in Sources */,
+				B07AFFA820715680004A96BA /* NoteDetailVC+UI.swift in Sources */,
+				B03C663120719E00002A60EF /* UIView+Additions.swift in Sources */,
+				B051EEB220768B7400C72812 /* NoteTableViewController.swift in Sources */,
+				B07F676620714A9A009BF8DF /* UIViewController+Additions.swift in Sources */,
+				B0EE100920790D5D009798DA /* NoteTableViewController+CreateNote.swift in Sources */,
+				B02A495720894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift in Sources */,
+				B051EEB02076884300C72812 /* CoreDataManager.swift in Sources */,
+				B07F675520714920009BF8DF /* Everpobre.xcdatamodeld in Sources */,
+				B02BE2272079311B003A9861 /* NoteDetailVC+ImagePicker.swift in Sources */,
+				B051EEB92076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift in Sources */,
+				B02BE225207930CD003A9861 /* NoteDetailVC+Handlers.swift in Sources */,
+				B03C662E2071941A002A60EF /* UIColor+Additions.swift in Sources */,
+				B02BE22A207964E8003A9861 /* ModalNotebookViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B07F675020714920009BF8DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B07F675120714920009BF8DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B07F675820714920009BF8DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B07F675920714920009BF8DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B07F675C20714920009BF8DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B07F675D20714920009BF8DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B07F675F20714920009BF8DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VYXC55CP3F;
+				INFOPLIST_FILE = Everpobre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juanfoncuberta.Everpobre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B07F676020714920009BF8DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VYXC55CP3F;
+				INFOPLIST_FILE = Everpobre/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juanfoncuberta.Everpobre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B07F674420714920009BF8DF /* Build configuration list for PBXProject "Everpobre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B07F675C20714920009BF8DF /* Debug */,
+				B07F675D20714920009BF8DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B07F675E20714920009BF8DF /* Build configuration list for PBXNativeTarget "Everpobre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B07F675F20714920009BF8DF /* Debug */,
+				B07F676020714920009BF8DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B07F675320714920009BF8DF /* Everpobre.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B07F675420714920009BF8DF /* Everpobre.xcdatamodel */,
+			);
+			currentVersion = B07F675420714920009BF8DF /* Everpobre.xcdatamodel */;
+			path = Everpobre.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B07F674120714920009BF8DF /* Project object */;
+}
