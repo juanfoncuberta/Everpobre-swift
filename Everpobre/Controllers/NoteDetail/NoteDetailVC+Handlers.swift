@@ -41,26 +41,19 @@ extension NoteDetailViewController{
     @objc  func showDatePickerHandler(){
        
         datePicker.frame = CGRect(x: 0.0, y: view.frame.height-250, width: view.frame.width, height: 250)
-    
         datePicker.date = dateFormatter.date(from: dateLabel.text!)!
-        
-//        tapView = UITapGestureRecognizer(target: self, action: #selector(closeDatePickerHanlder))
         showDatePicker(show: !datePickerOpened, animateTime: 0.5)
        
     }
     
 
     @objc  func datePickerValueChangedHandler(datePicker:UIDatePicker){
-        
-//        dateFormatter.dateStyle = DateFormatter.Style.medium
-//        
-//        dateFormatter.timeStyle = DateFormatter.Style.none
-        
+ 
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        
         dateLabel.text = dateFormatter.string(from: datePicker.date)
         
     }
+    
     @objc  func addPicToTextView(){
         
         let imagePickerController = UIImagePickerController()
@@ -104,10 +97,10 @@ extension NoteDetailViewController{
         print("getting geo pos...")
     }
     
-    @objc  func handleChangeNotebook(){
-        print("Changing notebook..")
-        notebookButton?.title = "Hola"
-    }
+//    @objc  func handleChangeNotebook(){
+//        print("Changing notebook..")
+//        notebookButton?.title = "Hola"
+//    }
     
     //MARK: - gesture handlers
     
@@ -179,9 +172,7 @@ extension NoteDetailViewController{
         case .began:
 //            closekeyboard()
             print("began")
-            print( imageArray[currentImageIndex].frame.height)
-            print(gestureView.frame.height)
-            print(longPressGesture.view?.frame.height)
+     
             relativePoint = longPressGesture.location(in:gestureView)
             
         case .changed:
@@ -208,13 +199,13 @@ extension NoteDetailViewController{
     }
     
     //MARK: - Notebook modal handler
-    
     @objc func tapNotebookNameLabelHandler(tapgesture: UITapGestureRecognizer){
         var modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Select the note's notebook", forCreateNewNote: true)
         modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
         self.present(modalNotebookVC, animated: true, completion: nil)
         
     }
+    
     //MARK: - datepicker handler
     func showDatePicker(show: Bool, animateTime: TimeInterval) {
         // set state variable
@@ -224,18 +215,6 @@ extension NoteDetailViewController{
 
     }
     
-    
-    
-    
-    //MARK: - Tag handler
-    
-    func fromNSSetToString(set:NSSet?)->String{
-        guard let set = set else{return ""}
-    
-        return set.map({ String(describing: $0) }).joined(separator: ", ")
-        
-        
-    
-    }
+
     
 }

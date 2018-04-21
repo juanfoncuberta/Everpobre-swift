@@ -36,7 +36,7 @@ extension NoteDetailViewController{
         mainTextView.topAnchor.constraint(equalTo: stackViewContainer.bottomAnchor, constant: 5).isActive = true
         mainTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         mainTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-       mainTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        mainTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
 //        mainTextView.addCornerAndBorder(color: .blue)
         
         view.addSubview(datePicker)
@@ -46,12 +46,10 @@ extension NoteDetailViewController{
     
     private func setUpMainBarItems(){
      
-      
         let mainUpStackView = UIStackView(arrangedSubviews: [titleTextField,notebookNameLabel])
         let mainDownStackView = UIStackView(arrangedSubviews: [dateLabel])
        let mainStackView = UIStackView(arrangedSubviews: [mainUpStackView,mainDownStackView])
         
-     
         view.addSubview(stackViewContainer)
         
      
@@ -69,13 +67,11 @@ extension NoteDetailViewController{
         stackViewContainer.backgroundColor = .white
         stackViewContainer.addSubview(mainStackView)
         
-        
         mainStackView.axis = .vertical
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.topAnchor.constraint(equalTo: stackViewContainer.topAnchor).isActive = true
         mainStackView.centerXAnchor.constraint(equalTo: stackViewContainer.centerXAnchor).isActive = true
         mainStackView.widthAnchor.constraint(equalTo: stackViewContainer.widthAnchor, constant: -10).isActive = true
-        
         
         mainUpStackView.axis = .horizontal
         mainUpStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,16 +85,11 @@ extension NoteDetailViewController{
         mainDownStackView.topAnchor.constraint(equalTo: mainUpStackView.bottomAnchor, constant: 5)
         mainDownStackView.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor)
         
-        
-        
-       
         titleTextField.textColor = .black
         titleTextField.leftAnchor.constraint(equalTo: mainUpStackView.leftAnchor, constant: 5).isActive = true
         titleTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
         titleTextField.topAnchor.constraint(equalTo: mainUpStackView.topAnchor, constant: 5).isActive = true
-//        titleTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        titleTextField.borderStyle = .line
-        
+
         notebookNameLabel.textColor = .black
         notebookNameLabel.rightAnchor.constraint(equalTo: mainUpStackView.rightAnchor, constant: -10).isActive = true
         notebookNameLabel.topAnchor.constraint(equalTo: mainUpStackView.topAnchor, constant: 5).isActive = true
@@ -129,12 +120,12 @@ extension NoteDetailViewController{
         let gpsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "geopos"), style: .plain, target: self, action: #selector(handleGeoPosition))
         let cameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPicToTextView))
         
-        notebookButton = UIBarButtonItem(title: "Notebook", style: .plain, target: self, action: #selector(handleChangeNotebook))
-        
+//        notebookButton = UIBarButtonItem(title: "Notebook", style: .plain, target: self, action: #selector(handleChangeNotebook))
+//        
         let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
         navigationItem.title = "Nota"
         navigationController?.isToolbarHidden = false
-        self.setToolbarItems([cameraButton], animated: true)
+        self.setToolbarItems([cameraButton,gpsButton], animated: true)
 //        navigationItem.rightBarButtonItems = [deleteButton,gpsButton,cameraButton]
 //        navigationItem.leftBarButtonItems = [notebookButton!,saveButton]
         navigationItem.rightBarButtonItems = [saveButton]

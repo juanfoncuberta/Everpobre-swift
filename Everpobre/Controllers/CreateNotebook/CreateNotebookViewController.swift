@@ -105,6 +105,7 @@ class CreateNotebookViewController: UIViewController {
         if let error = tuple.1{
            self.showError(title: error)
         }else{
+            self.delegate?.addNotebook(notebook: tuple.0!)
             dismiss(animated: true, completion: nil)
         }
     }

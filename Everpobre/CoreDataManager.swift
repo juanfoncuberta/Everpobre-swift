@@ -9,8 +9,23 @@
 import CoreData
 import UIKit
 typealias notebookCompletion = (Notebook,NSManagedObjectContext)->()
+
 struct CoreDataManager{
     static let shared = CoreDataManager()
+    
+    let setNotebooksDefaultsToFalse:notebookCompletion = {
+        (notebook,context) in
+        notebook.is_default = false
+        do{
+            try context.save()
+        }catch let saveErr{
+            print("Error saving notebook",saveErr)
+        }
+        
+    }
+    
+    
+
     
     let persistentContainer: NSPersistentContainer = {
         
@@ -63,17 +78,18 @@ struct CoreDataManager{
         }
         
         if isOn{
-             notebook = fetchNotebook(predicate: NSPredicate(format: "is_default == true"), completion: {
-                (notebook,context) in
-                notebook.is_default = false
-                do{
-                    try context.save()
-                }catch let saveErr{
-                    print("Error saving notebook",saveErr)
-                }
-                
-            })
-           
+//             notebook = fetchNotebook(predicate: NSPredicate(format: "is_default == true"), completion: {
+//                (notebook,context) in
+//                notebook.is_default = false
+//                do{
+//                    try context.save()
+//                }catch let saveErr{
+//                    print("Error saving notebook",saveErr)
+//                }
+//
+//            })
+//
+            notebook = fetchNotebook(predicate: NSPredicate(format: "is_default == true"), completion: setNotebooksDefaultsToFalse)
         }
 
         
@@ -131,7 +147,9 @@ struct CoreDataManager{
     func fetchNotebooks()->[Notebook]{
         let context = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<Notebook>(entityName: coreDataNames.Notebook.rawValue)
-
+        let sortByDefault = NSSortDescriptor(key: "is_default", ascending: false)
+         let sortByName = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortByDefault,sortByName]
         do{
             let notebooks = try context.fetch(fetchRequest)
             return notebooks
@@ -179,20 +197,56 @@ struct CoreDataManager{
             ($0 as! Note).notebook = notebookDestination
    
         }
+        if notebookOrigin.is_default {
+            notebookDestination.is_default = true
+        }
         
         let context = persistentContainer.viewContext
+        context.delete(notebookOrigin)
         do{
             try context.save()
+            return nil
         }catch let err{
             return err
         }
-        
+    }
     
+    func deleteNotebook(notebook:Notebook)->Error?{
+        let context = persistentContainer.viewContext
+        notebook.note?.forEach{
+            ($0 as! Note).image?.forEach{
+                context.delete($0 as! Image)
+            }
+            context.delete($0 as! Note)
+        }
+        context.delete(notebook)
         
-        return nil
+        do{
+            try context.save()
+            return nil
+        }catch let err{
+            return err
+        }
+
         
     }
     
-    
+    func changeDefaultNotebook(notebook:Notebook){
+        let context = persistentContainer.viewContext
+        let predicate = NSPredicate(format: "is_default == true")
+        
+        
+        let _ = fetchNotebook(predicate: predicate, completion: setNotebooksDefaultsToFalse)
+        notebook.is_default = true
+        
+        do{
+            try context.save()
+        }catch let fetchErr{
+            print("Error saving the notebook as default" ,fetchErr)
+        }
+        
+        
+        
+    }
     
 }

@@ -11,8 +11,9 @@ import UIKit
 protocol ModalNotebookViewControllerDelegate{
     
     func didNotebookSelect(notebook:Notebook)
-    
-    
+    func didNotebookUpdate(notebook:Notebook,numOfNewNotes:Int)
+    func didNotebookDelete(notebook:Notebook)
+
 }
 
 
@@ -56,12 +57,7 @@ protocol ModalNotebookViewControllerDelegate{
 
         setupUI()
     }
-    
-    
- 
-    
-   
-    
+
     private func setupUI(){
         
         view.addSubview(textLabel)
@@ -79,14 +75,14 @@ protocol ModalNotebookViewControllerDelegate{
         notebookTable.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
         notebookTable.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
         notebookTable.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10).isActive = true
-        notebookTable.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        notebookTable.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
         notebookTable.dataSource = self
         notebookTable.delegate = self
 //        notebookTable.backgroundColor = .red
         
         
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelHandler))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(cancelHandler))
         
         
         

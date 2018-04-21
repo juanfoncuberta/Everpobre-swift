@@ -11,6 +11,7 @@ class IdentedLabel: UILabel {
     override func drawText(in rect: CGRect) {
         let inset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         let customRect = UIEdgeInsetsInsetRect(rect, inset)
+         
         super.drawText(in: customRect)
     }
 }
@@ -18,25 +19,23 @@ class NoteTableViewController: UITableViewController {
     var notebooks = [Notebook]()
     var notes = [Note]()
     var modalNotebookVC: ModalNotebookViewController!
-//    var noteDetailVC: NoteDetailViewController!
-//    var noteDetailNVC: UINavigationController!
+
+
+    //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Everpobre"
-        self.notes = CoreDataManager.shared.fetchNotes()
+        self.notebooks = CoreDataManager.shared.fetchNotebooks()
+//        self.notes = CoreDataManager.shared.fetchNotes()
         setupNavItems()
-        fetchNotebooks()
-//        noteDetailVC = NoteDetailViewController()
-//        noteDetailNVC = noteDetailVC.wrappedInNavigation()
-        
-        
-        
+        fetchNotes()
+
     }
 
+    
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return notebooks.count
     }
 
@@ -45,9 +44,9 @@ class NoteTableViewController: UITableViewController {
         label.text = notebooks[section].name
         return label
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return (notebooks[section].note?.count)!
+        return (notebooks[section].note?.count) ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,25 +70,26 @@ class NoteTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
+    
+    
 
     //MARK: - setupNav
-    
     private func setupNavItems(){
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Notebooks", style: .plain, target: self, action:#selector(addNewNoteBookHandler))
-        
         let newNote = UIBarButtonItem(title: "New note", style: .plain, target: self, action: #selector(addNewNoteHandler))
-        
-        
-      
         navigationItem.rightBarButtonItem = newNote
     }
     
-    //MARK: - Handlers
-
-  
     
+    //MARK: - Handlers
     @objc private func addNewNoteHandler(sender:AnyObject,forEvent event: UIEvent){
         guard let touch = event.allTouches?.first else { return }
+        
+//        if(notebooks.count == 0){
+//             showError(title: "You haven't any notebook. Please create one before create a note")
+//            return
+//        }
+//
         
         //SHORT TAP
         if touch.tapCount == 1 {
@@ -117,15 +117,14 @@ class NoteTableViewController: UITableViewController {
         
         let addNotebookAction = UIAlertAction(title: "Add notebook", style: .default){
             (_) in
+            
             let createNotebookVC = CreateNotebookViewController()
             createNotebookVC.delegate = self
             self.present(createNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
         }
         let notebooksListAction = UIAlertAction(title:"Notebooks", style: .default){
             (_) in
-//            guard let navigationController = self.navigationController else {return}
-            
-            
+           
             self.modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Swipe the notebook to perform actions",forCreateNewNote:false)
             self.modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
   
@@ -145,18 +144,24 @@ class NoteTableViewController: UITableViewController {
     }
     
     //MARK: - data handlers
-    private func fetchNotebooks(){
-        
-        
-        notebooks = []
+    private func fetchNotes(){
 
-        notes.forEach{ (note) in
-
-            if !notebooks.contains(note.notebook!) {
-                notebooks.append(note.notebook!)
-                
+        notes = []
+        notebooks.forEach{
+            $0.note?.forEach{
+                notes.append($0 as! Note)
             }
         }
+//        notebooks = []
+//
+//        notes.forEach{
+//            (note) in
+//            if !notebooks.contains(note.notebook!) {
+//                notebooks.append(note.notebook!)
+//
+//            }
+//        }
+        
         
     }
     

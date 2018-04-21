@@ -11,7 +11,9 @@ import UIKit
 extension NoteTableViewController: CreateNotebookViewControllerDelegate{
     func addNotebook(notebook: Notebook) {
         
-        tableView.reloadData()
+        notebooks.append(notebook)
+        let section = notebooks.count
+        tableView.insertSections(IndexSet.init(integer: section-1), with: .automatic)
     
     }
     

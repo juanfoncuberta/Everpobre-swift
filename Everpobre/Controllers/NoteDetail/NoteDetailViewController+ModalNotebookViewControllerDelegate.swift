@@ -10,6 +10,18 @@ import Foundation
 
     
     extension NoteDetailViewController: ModalNotebookViewControllerDelegate{
+        func didNotebookUpdate(notebook: Notebook, numOfNewNotes: Int) {
+            
+        }
+        
+       
+        
+        func didNotebookDelete(notebook: Notebook) {
+            
+        }
+        
+      
+        
         func didNotebookSelect(notebook: Notebook) {
             self.notebook = notebook
         }

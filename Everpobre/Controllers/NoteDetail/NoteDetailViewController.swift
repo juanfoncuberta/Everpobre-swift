@@ -19,10 +19,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
             titleTextField.text = note?.title
             notebookNameLabel.text = note?.notebook?.name
             dateLabel.text = dateFormatter.string(from: (note?.date)!)
-            mainTextView.text = note?.text
-           
-            
-            
+            mainTextView.text = note?.text     
         }
     }
     
@@ -38,7 +35,6 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
     var currentImageIndex:Int!
     var textUIViews: [UIView]!
     var delegate: NoteDetailViewControllerDelegate?
-//    var delegate: UIViewController?
     var relativePoint: CGPoint!
     var notebook: Notebook?{
         didSet{
@@ -75,8 +71,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .white
- 
-        textView.text = "Write here..."
+
         return textView
     }()
     
@@ -130,20 +125,9 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightBlue
-        
-        
+                
         setupUI()
         notebookNameLabel.text = notebook?.name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-   //MARK: - UI
-   
-    
 
 }

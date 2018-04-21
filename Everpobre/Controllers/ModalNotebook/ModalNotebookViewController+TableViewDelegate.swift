@@ -9,9 +9,9 @@
 import UIKit
 
 
-protocol ModalNoteViewControllerDelegate {
-    func hola(notebook:Notebook)
-}
+//protocol ModalNoteViewControllerDelegate {
+//    func hola(notebook:Notebook)
+//}
 
 extension ModalNotebookViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,14 +44,22 @@ extension ModalNotebookViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if !forCreateNewNote{
+            
+            var rowActionArray = [UITableViewRowAction]()
+            
             let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteNotebookHandler)
             deleteAction.backgroundColor = .red
             
+            rowActionArray.append(deleteAction)
             
-            let editAction = UITableViewRowAction(style: .normal, title: "Select as default", handler: selectAsDefaultHandler)
-            editAction.backgroundColor = UIColor.gray
+            if(!notebooks[indexPath.row].is_default){
+                let editAction = UITableViewRowAction(style: .normal, title: "Select as default", handler: selectAsDefaultHandler)
+                editAction.backgroundColor = UIColor.gray
+                rowActionArray.append(editAction)
+            }
+           
             
-            return [deleteAction,editAction]
+            return rowActionArray
         }
         return []
         
@@ -61,19 +69,29 @@ extension ModalNotebookViewController: UITableViewDataSource{
     private func deleteNotebookHandler(action:UITableViewRowAction,indexPath: IndexPath){
         
            let deleteOptions = UIAlertController(title: "Select action", message: "What you want to do with the notes?", preferredStyle: .actionSheet)
-        
+    
         let notebooksListAction = UIAlertAction(title:"Delete", style: .default){
             
             (_) in
-         
-            
-            
+            let err = CoreDataManager.shared.deleteNotebook(notebook: self.notebooks[indexPath.row])
+            if(err != nil){
+                print("error deleting notebook:", err ?? "")
+                return
+            }
+                self.delegate.didNotebookDelete(notebook: self.notebooks[indexPath.row])
+            self.notebooks.remove(at: indexPath.row)
+            self.notebookTable.deleteRows(at: [indexPath], with: .automatic)
+        
+        
         }
        
         let changeNotebookListAction = UIAlertAction(title: "Transfer to another notebook", style: .default) {
             (_) in
             let notebook = self.notebooks[indexPath.row]
             self.changeNotesFromNotebookHanlder(notebook: notebook)
+            self.notebooks.remove(at: indexPath.row)
+//             self.notebookTable.deleteRows(at: [indexPath], with: .automatic)
+           
         }
         
         
@@ -90,17 +108,25 @@ extension ModalNotebookViewController: UITableViewDataSource{
     //TODO
     private func selectAsDefaultHandler(action:UITableViewRowAction,indexPath: IndexPath){
         
+        CoreDataManager.shared.changeDefaultNotebook(notebook: notebooks[indexPath.row])
+        
     }
     
     private func changeNotesFromNotebookHanlder(notebook notebookOrigin: Notebook){
         let selectNotebookDestinationAlert = UIAlertController(title: "Select the destionation", message: nil, preferredStyle: .actionSheet)
-        
+          let row = notebooks.index(of: notebookOrigin)
+        let indexPath = IndexPath(row: row!, section: 0)
         notebooks.forEach{
             if($0.name != notebookOrigin.name){
                 let notebook = $0
-                let alertAction = UIAlertAction(title: $0.name, style: .default){ (UIAlertAction) in
-                    
-                   let err = CoreDataManager.shared.changeNotesAndDeleteNotebook(notebookOrigin: notebookOrigin, notebookDestination: notebook)
+                let alertAction = UIAlertAction(title: $0.name, style: .default){
+                    (_) in
+                    let numOfNewNotes = notebookOrigin.note?.count
+                    self.delegate.didNotebookDelete(notebook: notebookOrigin)
+                    _ = CoreDataManager.shared.changeNotesAndDeleteNotebook(notebookOrigin: notebookOrigin, notebookDestination: notebook)
+                    self.delegate.didNotebookUpdate(notebook: notebook, numOfNewNotes: numOfNewNotes!)
+                    self.notebookTable.deleteRows(at: [indexPath], with: .automatic)
+
                 }
                 selectNotebookDestinationAlert.addAction(alertAction)
             }
