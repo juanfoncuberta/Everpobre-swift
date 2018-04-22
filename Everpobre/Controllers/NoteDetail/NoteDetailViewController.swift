@@ -11,6 +11,8 @@ import MapKit
 protocol NoteDetailViewControllerDelegate {
     func didAddNote(note:Note)
     func didUpdateNote(indexPath:IndexPath)
+    func didDeleteNote(indexPath:IndexPath,note:Note)
+//    func didCreateNote(indexPath:IndexPath)
 }
 class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -36,6 +38,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
     var textUIViews: [UIView]!
     var delegate: NoteDetailViewControllerDelegate?
     var relativePoint: CGPoint!
+    let originalNotebook:Notebook?
     var notebook: Notebook?{
         didSet{
             
@@ -148,6 +151,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     init(notebook:Notebook?,delegate:NoteDetailViewControllerDelegate?,indexPath:IndexPath?){
+        self.originalNotebook = notebook
         self.notebook = notebook
         self.delegate = delegate
         self.indexPath = indexPath

@@ -26,7 +26,10 @@ class NoteTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Everpobre"
         self.notebooks = CoreDataManager.shared.fetchNotebooks()
-//        self.notes = CoreDataManager.shared.fetchNotes()
+        if(self.notebooks.count == 0){
+           let notebook =  CoreDataManager.shared.createNotebook(name: "My notebook", isOn: true)
+            self.notebooks.append(notebook.0!)
+        }
         setupNavItems()
         fetchNotes()
 

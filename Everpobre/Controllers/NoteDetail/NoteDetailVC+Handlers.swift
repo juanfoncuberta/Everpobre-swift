@@ -16,8 +16,8 @@ extension NoteDetailViewController{
     @objc  func handleSave(){
         guard let title = titleTextField.text else {return}
         guard let date = dateLabel.text else {return}
-        guard let text = mainTextView.text else {return}
-        guard let address = addressLabel.text else {return}
+        let text = mainTextView.text ?? ""
+        let address = addressLabel.text ?? ""
 
         if title.isEmpty {
             showError(title: "The note title can't be empty")
@@ -25,12 +25,22 @@ extension NoteDetailViewController{
         }
         //la nota se actualiza
         if indexPath != nil{
-            //FIXME: Peta la actualización si cambia de notebook. hacer lo mismo que con el modalNotebook
-//            let sameNotebook = true
+            self.setNote(title: title, text: text, date: date, images:nil , address: address)
             
-            self.setNote(title: title, text: text, date: date, images:nil , latitude: nil, longitude: nil)
-            CoreDataManager.shared.updateNote(note: note!)
-            self.delegate?.didUpdateNote( indexPath: indexPath!)
+            
+            if(originalNotebook != notebook ){
+                self.delegate?.didDeleteNote(indexPath: indexPath!,note: note!)
+                 CoreDataManager.shared.updateNote(note: note!)
+                self.delegate?.didAddNote(note: note!)
+            }else{
+                 CoreDataManager.shared.updateNote(note: note!)
+                self.delegate?.didUpdateNote( indexPath: indexPath!)
+                
+            }
+            
+           
+           
+            
         
         //la note se crea
         }else{
@@ -203,13 +213,13 @@ extension NoteDetailViewController{
     
     //MARK: - notehandler
     
-    func setNote(title:String,text:String,date:String, images: [UIImage]?,latitude:Double?,longitude:Double?){
+    func setNote(title:String,text:String,date:String, images: [UIImage]?,address:String){
         
-        print(text)
         note?.title = title
         note?.text = text
         note?.date = dateFormatter.date(from: date)
         note?.notebook = notebook
+        note?.address = address
         
         
     }

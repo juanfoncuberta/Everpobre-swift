@@ -9,13 +9,24 @@
 import Foundation
 
 extension NoteTableViewController:NoteDetailViewControllerDelegate{
-    func didUpdateNote(indexPath: IndexPath) {
-
+    func didDeleteNote(indexPath: IndexPath, note: Note) {
         
-          tableView.reloadRows(at: [indexPath], with: .top)
+        let notebook = notebooks[indexPath.section]
+
+        tableView.deleteRows(at: [indexPath], with: .top)
+   
     }
     
-  
+    func didCreateNote(indexPath: IndexPath) {
+        tableView.insertRows(at: [indexPath], with: .top)
+    }
+    
+
+    func didUpdateNote(indexPath: IndexPath) {
+
+        tableView.reloadRows(at: [indexPath], with: .top)
+    }
+    
     
     func didAddNote(note: Note) {
        

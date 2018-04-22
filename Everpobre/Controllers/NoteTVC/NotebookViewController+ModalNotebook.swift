@@ -35,10 +35,7 @@ extension NoteTableViewController: ModalNotebookViewControllerDelegate{
         
         notebooks.remove(at: section!)
         tableView.deleteSections(IndexSet.init(integer: section!), with: .automatic)
-//        tableView.deleteSections(indexSet, with: .delete )
-//        notebook.note?.forEach{
-//            tableView.deleteSections(IndexSet(notebook), with: UITableViewRowAnimation)
-//        }
+
     }
     
   
