@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 protocol NoteDetailViewControllerDelegate {
     func didAddNote(note:Note)
+    func didUpdateNote(indexPath:IndexPath)
 }
 class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -19,19 +20,18 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
             titleTextField.text = note?.title
             notebookNameLabel.text = note?.notebook?.name
             dateLabel.text = dateFormatter.string(from: (note?.date)!)
-            mainTextView.text = note?.text     
+            mainTextView.text = note?.text
+            addressLabel.text = note?.address
         }
     }
-    
+    let widthLabels: CGFloat = 75
     var notebookButton: UIBarButtonItem?
-//    {
-//        didSet{
-//            notebookNameLabel.text = notebook?.name
-//        }
-//    }
+    
+
     var tapView: UITapGestureRecognizer!
     var datePickerOpened: Bool = false 
-//    weak var mapView: MKMapView?
+
+    var indexPath:IndexPath?
     var currentImageIndex:Int!
     var textUIViews: [UIView]!
     var delegate: NoteDetailViewControllerDelegate?
@@ -47,30 +47,44 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         let stackVC = UIView()
         return stackVC
     }()
-    
-    let titleTextField: UITextField = {
+    let titleLabel: UILabel = {
+        let titleLab = UILabel()
+        titleLab.translatesAutoresizingMaskIntoConstraints = false
+        titleLab.text = "Title:"
+        return titleLab
+    }()
+    var titleTextField: UITextField = {
+       
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Note title"
         return textField
-    }()
+    }(){
+        didSet{
+            note?.title = titleTextField.text
+        }
+        
+    }
     
+    let titleNotebookNameLabel: UILabel = {
+        let titleNbNameLabel = UILabel()
+        titleNbNameLabel.text = "Notebook:"
+        titleNbNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleNbNameLabel
+    }()
     let notebookNameLabel: UILabel = {
         let nbnLabel = UILabel()
         nbnLabel.translatesAutoresizingMaskIntoConstraints = false
-        nbnLabel.text = "Notebook name"
+  
         return nbnLabel
     }()
-    
-  
-    
-    
-    
-  
+
     let mainTextView: UITextView = {
+     
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .white
+    
 
         return textView
     }()
@@ -88,7 +102,13 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter
     }()
-    let dateLabel:UILabel = {
+    let titleDateLabel:UILabel = {
+        let titleDateLab = UILabel()
+        titleDateLab.text = "Date:"
+        titleDateLab.translatesAutoresizingMaskIntoConstraints = false
+        return titleDateLab
+    }()
+    var dateLabel:UILabel = {
         let dLabel = UILabel()
         
         dLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +116,23 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         dLabel.textColor = .black
         
         return dLabel
+        }(){
+        didSet{
+           
+            note?.date =  dateFormatter.date(from: dateLabel.text!)
+        }
+    }
+    let titleAddressLabel: UILabel = {
+        let titleAddressLab = UILabel()
+        titleAddressLab.text = "Location:"
+        titleAddressLab.translatesAutoresizingMaskIntoConstraints = false
+        return titleAddressLab
+    }()
+    var addressLabel:UILabel = {
+        let addrLabel = UILabel()
+        addrLabel.translatesAutoresizingMaskIntoConstraints = false
+        addrLabel.textColor = .black
+        return addrLabel
     }()
     
     var topImageConstraint: NSLayoutConstraint!
@@ -110,10 +147,17 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         self.init(notebook: nil, delegate: nil)
     }
     
-    init(notebook:Notebook?,delegate:NoteDetailViewControllerDelegate?){
+    init(notebook:Notebook?,delegate:NoteDetailViewControllerDelegate?,indexPath:IndexPath?){
         self.notebook = notebook
         self.delegate = delegate
+        self.indexPath = indexPath
         super.init(nibName: nil, bundle: Bundle(for: type(of: self)))
+    }
+    
+    convenience init(notebook:Notebook?,delegate:NoteDetailViewControllerDelegate?){
+       
+      self.init(notebook: notebook, delegate: delegate, indexPath: nil)
+         
     }
     
     required init?(coder aDecoder: NSCoder) {

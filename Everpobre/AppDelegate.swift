@@ -22,10 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let noteTVC = NoteTableViewController()
-        //FIXME:Can't init noteDetailVC without notebook and delegate
-//        let noteDetailVC = NoteDetailViewController()
+
         noteTNavigation = noteTVC.wrappedInNavigation()
-//        noteDetailNavigation =  noteDetailVC.wrappedInNavigation()
+
         mainVC = UIViewController()
         if UIDevice.current.userInterfaceIdiom == .pad{
             splitVC = UISplitViewController()

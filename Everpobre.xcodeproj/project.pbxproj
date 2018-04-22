@@ -29,6 +29,11 @@
 		B07F675A20714920009BF8DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07F675820714920009BF8DF /* LaunchScreen.storyboard */; };
 		B07F676320714980009BF8DF /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F676220714980009BF8DF /* NoteDetailViewController.swift */; };
 		B07F676620714A9A009BF8DF /* UIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07F676520714A9A009BF8DF /* UIViewController+Additions.swift */; };
+		B08FBA01208BF77900393590 /* ModalDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08FBA00208BF77900393590 /* ModalDatePickerViewController.swift */; };
+		B08FBA05208C0EA100393590 /* NoteDetailVC+Datepicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08FBA04208C0EA100393590 /* NoteDetailVC+Datepicker.swift */; };
+		B099DEC5208CD5F700768A70 /* ModalLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099DEC3208CD5F700768A70 /* ModalLocationViewController.swift */; };
+		B099DEC6208CD5F700768A70 /* ModalLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B099DEC4208CD5F700768A70 /* ModalLocationViewController.xib */; };
+		B099DECA208CEFB200768A70 /* ModalDetailViewController+ModalLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099DEC9208CEFB200768A70 /* ModalDetailViewController+ModalLocation.swift */; };
 		B0EE100920790D5D009798DA /* NoteTableViewController+CreateNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE100820790D5D009798DA /* NoteTableViewController+CreateNote.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,11 @@
 		B07F675B20714920009BF8DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B07F676220714980009BF8DF /* NoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
 		B07F676520714A9A009BF8DF /* UIViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Additions.swift"; sourceTree = "<group>"; };
+		B08FBA00208BF77900393590 /* ModalDatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDatePickerViewController.swift; sourceTree = "<group>"; };
+		B08FBA04208C0EA100393590 /* NoteDetailVC+Datepicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteDetailVC+Datepicker.swift"; sourceTree = "<group>"; };
+		B099DEC3208CD5F700768A70 /* ModalLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalLocationViewController.swift; sourceTree = "<group>"; };
+		B099DEC4208CD5F700768A70 /* ModalLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalLocationViewController.xib; sourceTree = "<group>"; };
+		B099DEC9208CEFB200768A70 /* ModalDetailViewController+ModalLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModalDetailViewController+ModalLocation.swift"; sourceTree = "<group>"; };
 		B0EE100820790D5D009798DA /* NoteTableViewController+CreateNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteTableViewController+CreateNote.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +130,8 @@
 				B07AFFA720715680004A96BA /* NoteDetailVC+UI.swift */,
 				B02BE224207930CD003A9861 /* NoteDetailVC+Handlers.swift */,
 				B02BE2262079311B003A9861 /* NoteDetailVC+ImagePicker.swift */,
+				B08FBA04208C0EA100393590 /* NoteDetailVC+Datepicker.swift */,
+				B099DEC9208CEFB200768A70 /* ModalDetailViewController+ModalLocation.swift */,
 			);
 			path = NoteDetail;
 			sourceTree = "<group>";
@@ -181,6 +193,8 @@
 		B07F676120714964009BF8DF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B099DEBE208CD2D000768A70 /* ModalLocation */,
+				B08FB9FF208BF75500393590 /* ModalDatepicker */,
 				B02BE22820796463003A9861 /* ModalNotebook */,
 				B051EEBC2076C0B200C72812 /* CreateNotebook */,
 				B051EEBB2076C0A300C72812 /* NoteTVC */,
@@ -204,6 +218,23 @@
 			children = (
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		B08FB9FF208BF75500393590 /* ModalDatepicker */ = {
+			isa = PBXGroup;
+			children = (
+				B08FBA00208BF77900393590 /* ModalDatePickerViewController.swift */,
+			);
+			path = ModalDatepicker;
+			sourceTree = "<group>";
+		};
+		B099DEBE208CD2D000768A70 /* ModalLocation */ = {
+			isa = PBXGroup;
+			children = (
+				B099DEC3208CD5F700768A70 /* ModalLocationViewController.swift */,
+				B099DEC4208CD5F700768A70 /* ModalLocationViewController.xib */,
+			);
+			path = ModalLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B07F675A20714920009BF8DF /* LaunchScreen.storyboard in Resources */,
+				B099DEC6208CD5F700768A70 /* ModalLocationViewController.xib in Resources */,
 				B07F675720714920009BF8DF /* Assets.xcassets in Resources */,
 				B07F675220714920009BF8DF /* Main.storyboard in Resources */,
 			);
@@ -282,6 +314,8 @@
 				B02BE22C20797063003A9861 /* ModalNotebookViewController+TableViewDelegate.swift in Sources */,
 				B07F676320714980009BF8DF /* NoteDetailViewController.swift in Sources */,
 				B051EEB420768F4400C72812 /* CreateNotebookViewController.swift in Sources */,
+				B08FBA01208BF77900393590 /* ModalDatePickerViewController.swift in Sources */,
+				B099DEC5208CD5F700768A70 /* ModalLocationViewController.swift in Sources */,
 				B07F674D20714920009BF8DF /* AppDelegate.swift in Sources */,
 				B051EEB72076B70B00C72812 /* EnumHelper.swift in Sources */,
 				B003935F2087A62F00821AFF /* NotebookViewController+ModalNotebook.swift in Sources */,
@@ -292,6 +326,8 @@
 				B0EE100920790D5D009798DA /* NoteTableViewController+CreateNote.swift in Sources */,
 				B02A495720894171005D549C /* NoteDetailViewController+ModalNotebookViewControllerDelegate.swift in Sources */,
 				B051EEB02076884300C72812 /* CoreDataManager.swift in Sources */,
+				B099DECA208CEFB200768A70 /* ModalDetailViewController+ModalLocation.swift in Sources */,
+				B08FBA05208C0EA100393590 /* NoteDetailVC+Datepicker.swift in Sources */,
 				B07F675520714920009BF8DF /* Everpobre.xcdatamodeld in Sources */,
 				B02BE2272079311B003A9861 /* NoteDetailVC+ImagePicker.swift in Sources */,
 				B051EEB92076BF2300C72812 /* NoteTableViewController+CreateNotebook.swift in Sources */,

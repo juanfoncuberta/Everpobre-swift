@@ -16,33 +16,46 @@ extension NoteDetailViewController{
     @objc  func handleSave(){
         guard let title = titleTextField.text else {return}
         guard let date = dateLabel.text else {return}
-       
-        guard let notebook = notebookNameLabel.text else {return}
         guard let text = mainTextView.text else {return}
+        guard let address = addressLabel.text else {return}
 
         if title.isEmpty {
             showError(title: "The note title can't be empty")
             return
         }
-      
+        //la nota se actualiza
+        if indexPath != nil{
+            //FIXME: Peta la actualización si cambia de notebook. hacer lo mismo que con el modalNotebook
+//            let sameNotebook = true
+            
+            self.setNote(title: title, text: text, date: date, images:nil , latitude: nil, longitude: nil)
+            CoreDataManager.shared.updateNote(note: note!)
+            self.delegate?.didUpdateNote( indexPath: indexPath!)
         
-      
-
-        let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, latitude: nil, longitude: nil)
-
-
-        if(tuple.0 != nil){
-            self.delegate?.didAddNote(note: tuple.0!)
+        //la note se crea
+        }else{
+            let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, address: address)
+            
+            
+            if(tuple.0 != nil){
+                self.delegate?.didAddNote(note: tuple.0!)
+            }
         }
+
+        
         
         navigationController?.popViewController(animated: true)
        
     }
     @objc  func showDatePickerHandler(){
-       
-        datePicker.frame = CGRect(x: 0.0, y: view.frame.height-250, width: view.frame.width, height: 250)
-        datePicker.date = dateFormatter.date(from: dateLabel.text!)!
-        showDatePicker(show: !datePickerOpened, animateTime: 0.5)
+
+        let datePickerModal = ModalDatePickerViewController()
+        datePickerModal.delegate = self
+        
+//        datePicker.frame = CGRect(x: 0.0, y: view.frame.height-250, width: view.frame.width, height: 250)
+//        datePicker.date = dateFormatter.date(from: dateLabel.text!)!
+//        showDatePicker(show: !datePickerOpened, animateTime: 0.5)
+        self.present(datePickerModal,animated: true)
        
     }
     
@@ -62,32 +75,6 @@ extension NoteDetailViewController{
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController,animated: true,completion:nil)
     }
-    //        let photoAlert = UIAlertController(title: "Add photo", message: "Choose the way to pic the photo", preferredStyle: .actionSheet)
-    //
-    //        let imagePicker = UIImagePickerController()
-    ////        imagePicker.delegate = self
-    //        imagePicker.allowsEditing = true
-    //
-    //        let useCamera = UIAlertAction(title: "Camera", style: .default){
-    //            (UIAlertAction) in
-    //            imagePicker.sourceType = .camera
-    //            self.present(imagePicker, animated: true, completion: nil)
-    //        }
-    //        let usePhotoLibrary = UIAlertAction(title: "Photo Library", style: .default){
-    //            (UIAlertAction) in
-    //            imagePicker.sourceType = .photoLibrary
-    //            self.present(imagePicker, animated: true, completion: nil)
-    //
-    //        }
-    //
-    //        let cancelPhotoPicker = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-    //
-    //        photoAlert.addAction(useCamera)
-    //        photoAlert.addAction(usePhotoLibrary)
-    //        photoAlert.addAction(cancelPhotoPicker)
-    //
-    //        present(photoAlert,animated: true,completion: nil)
-    //    }
     
     @objc  func handleDeleteNote(){
         print("borrando")
@@ -95,12 +82,11 @@ extension NoteDetailViewController{
     
     @objc  func handleGeoPosition(){
         print("getting geo pos...")
+         let modalLocationViewController = ModalLocationViewController()
+        modalLocationViewController.delegate = self
+        present(modalLocationViewController.wrappedInNavigation(), animated: true)
     }
     
-//    @objc  func handleChangeNotebook(){
-//        print("Changing notebook..")
-//        notebookButton?.title = "Hola"
-//    }
     
     //MARK: - gesture handlers
     
@@ -200,21 +186,34 @@ extension NoteDetailViewController{
     
     //MARK: - Notebook modal handler
     @objc func tapNotebookNameLabelHandler(tapgesture: UITapGestureRecognizer){
-        var modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Select the note's notebook", forCreateNewNote: true)
+        let modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Select the note's notebook", forCreateNewNote: true)
         modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
-        self.present(modalNotebookVC, animated: true, completion: nil)
+        self.present(modalNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
         
     }
     
     //MARK: - datepicker handler
-    func showDatePicker(show: Bool, animateTime: TimeInterval) {
-        // set state variable
-        self.closeKeyboard(views: textUIViews)
-        datePickerOpened = show
-        datePicker.isHidden = !show
-
+//    func showDatePicker(show: Bool, animateTime: TimeInterval) {
+//        // set state variable
+//        self.closeKeyboard(views: textUIViews)
+//        datePickerOpened = show
+//        datePicker.isHidden = !show
+//
+//    }
+    
+    //MARK: - notehandler
+    
+    func setNote(title:String,text:String,date:String, images: [UIImage]?,latitude:Double?,longitude:Double?){
+        
+        print(text)
+        note?.title = title
+        note?.text = text
+        note?.date = dateFormatter.date(from: date)
+        note?.notebook = notebook
+        
+        
     }
     
-
+//(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, latitude: nil, longitude: nil)
     
 }

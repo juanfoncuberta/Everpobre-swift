@@ -109,7 +109,21 @@ struct CoreDataManager{
         }
     
     }
-    func createNote(title:String,date:Date,notebook:Notebook,text:String,images:[UIImageView]?,latitude:Double?,longitude:Double?)->(Note?,Error?){
+    
+    func updateNote(note:Note){
+    
+        let context = persistentContainer.viewContext
+        do {
+            try context.save()
+           
+        } catch let savErr {
+            print("error saving note: \(savErr)")
+        }
+        
+    }
+    
+    
+    func createNote(title:String,date:Date,notebook:Notebook,text:String,images:[UIImageView]?,address:String?)->(Note?,Error?){
         
         let context = persistentContainer.viewContext
         let note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context) as! Note
@@ -117,6 +131,7 @@ struct CoreDataManager{
         note.date = date
         note.text = text
          note.notebook = notebook
+        note.address = address
         //            note.latitude = (latitude ?? nil)!
         //            note.longitude = (longitude ?? nil)!
        
@@ -249,4 +264,5 @@ struct CoreDataManager{
         
     }
     
+   
 }

@@ -105,7 +105,7 @@ extension ModalNotebookViewController: UITableViewDataSource{
         present(deleteOptions,animated: true,completion: nil)
     }
     
-    //TODO
+
     private func selectAsDefaultHandler(action:UITableViewRowAction,indexPath: IndexPath){
         
         CoreDataManager.shared.changeDefaultNotebook(notebook: notebooks[indexPath.row])
