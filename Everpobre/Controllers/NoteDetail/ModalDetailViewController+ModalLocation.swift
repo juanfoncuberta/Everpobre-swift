@@ -11,7 +11,6 @@ import Foundation
 extension NoteDetailViewController: ModalLocationViewControllerDelegate{
     func didUploadAddress(address: String) {
         self.addressLabel.text = address
-        print("address label \(self.addressLabel.text)")
     }
     
     

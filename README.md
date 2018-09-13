@@ -1,12 +1,6 @@
-# Práctica iOs avanzado (Everpobre)
+# Práctica diseño apps (Wallapop)
 
 
 <br>
 
-## Puntos incompletos de la práctica <br>
-
-* __Que sea una app universal__
-
-* __Acabar de gestionar bien los gestures__
-
-* __Guardar y cargar imágenes con CoreData__
+[# Enlace a Marvel](https://marvelapp.com/8dj6hha)

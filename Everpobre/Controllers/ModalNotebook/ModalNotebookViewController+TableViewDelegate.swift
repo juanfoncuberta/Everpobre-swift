@@ -18,9 +18,7 @@ extension ModalNotebookViewController: UITableViewDataSource{
       
         return notebooks.count
     }
-    
-   
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellId = "notebookModal"
         
@@ -93,9 +91,7 @@ extension ModalNotebookViewController: UITableViewDataSource{
 //             self.notebookTable.deleteRows(at: [indexPath], with: .automatic)
            
         }
-        
-        
-     
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
         deleteOptions.addAction(notebooksListAction)

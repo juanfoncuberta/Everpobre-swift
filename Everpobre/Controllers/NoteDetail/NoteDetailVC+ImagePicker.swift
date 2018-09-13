@@ -30,23 +30,12 @@ extension NoteDetailViewController{
         
         imageView.topAnchor.constraint(equalTo: mainTextView.topAnchor, constant: 10).isActive = true
         imageView.leftAnchor.constraint(equalTo: mainTextView.leftAnchor, constant: 10).isActive = true
-        
-      
-//        topImageConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: mainTextView, attribute: .top, multiplier: 1, constant: 10)
-//
-//        bottomImageConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: mainTextView, attribute: .bottom, multiplier: 1, constant: -20)
-//
-//        leftImageConstraint = NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: mainTextView, attribute: .left, multiplier: 1, constant: 10)
-//
-//        rightImageConstraint = NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: mainTextView, attribute: .right, multiplier: 1, constant: -20)
-//        view.addConstraints([topImageConstraint,bottomImageConstraint,leftImageConstraint,rightImageConstraint])
-//
-//        NSLayoutConstraint.deactivate([bottomImageConstraint,rightImageConstraint])
+
         imageView.isUserInteractionEnabled = true
         
         
-        imageView.addGestureRecognizer( UIPinchGestureRecognizer(target: self, action: #selector(handleImagePinch)))
-        imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(handleImageRotation)))
+        //imageView.addGestureRecognizer( UIPinchGestureRecognizer(target: self, action: #selector(handleImagePinch)))
+        //imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(handleImageRotation)))
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleMoveImage)))
         imageArray.append(imageView)
 //        bezierImage(image: imageView)

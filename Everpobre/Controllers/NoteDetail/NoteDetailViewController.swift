@@ -24,8 +24,14 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
             dateLabel.text = dateFormatter.string(from: (note?.date)!)
             mainTextView.text = note?.text
             addressLabel.text = note?.address
+            
+            self.setUpImages(images: (note?.image)!)
+      
+
         }
     }
+
+
     let widthLabels: CGFloat = 75
     var notebookButton: UIBarButtonItem?
     
@@ -177,5 +183,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         setupUI()
         notebookNameLabel.text = notebook?.name
     }
+    
+   
 
 }

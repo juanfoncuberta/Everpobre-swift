@@ -142,8 +142,7 @@ extension NoteDetailViewController{
     private func setUpNavigationItems(){
         
         
-       let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action:  #selector(handleDeleteNote))
-      let a = UIBarButtonItem(barButtonSystemItem:.flexibleSpace , target: self, action: nil)
+        let a = UIBarButtonItem(barButtonSystemItem:.flexibleSpace , target: self, action: nil)
 
         let gpsButton = UIBarButtonItem(title: "Location", style: .plain, target: self, action: #selector(handleGeoPosition))
         let cameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addPicToTextView))

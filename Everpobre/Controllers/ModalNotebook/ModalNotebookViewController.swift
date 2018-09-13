@@ -16,7 +16,6 @@ protocol ModalNotebookViewControllerDelegate{
 
 }
 
-
  final class ModalNotebookViewController: UIViewController {
     var delegate: ModalNotebookViewControllerDelegate!
     var forCreateNewNote: Bool = false
@@ -49,9 +48,7 @@ protocol ModalNotebookViewControllerDelegate{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
- 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,15 +77,10 @@ protocol ModalNotebookViewControllerDelegate{
         notebookTable.delegate = self
 //        notebookTable.backgroundColor = .red
         
-        
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(cancelHandler))
-        
-        
+      
         
     }
-    
-    
     
     //MARK: - handlers
     

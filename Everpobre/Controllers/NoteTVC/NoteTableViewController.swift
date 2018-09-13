@@ -36,7 +36,6 @@ class NoteTableViewController: UITableViewController {
     }
 
     
-    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return notebooks.count
@@ -74,13 +73,12 @@ class NoteTableViewController: UITableViewController {
         return 40
     }
     
-    
 
     //MARK: - setupNav
     private func setupNavItems(){
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Notebooks", style: .plain, target: self, action:#selector(addNewNoteBookHandler))
-        let newNote = UIBarButtonItem(title: "New note", style: .plain, target: self, action: #selector(addNewNoteHandler))
-        navigationItem.rightBarButtonItem = newNote
+        navigationItem.leftBarButtonItem    =     UIBarButtonItem(title: "Notebooks", style: .plain, target: self, action:#selector(addNewNoteBookHandler))
+        navigationItem.rightBarButtonItem   =     UIBarButtonItem(title: "New note", style: .plain, target: self, action: #selector(addNewNoteHandler))
+        
     }
     
     
@@ -88,18 +86,17 @@ class NoteTableViewController: UITableViewController {
     @objc private func addNewNoteHandler(sender:AnyObject,forEvent event: UIEvent){
         guard let touch = event.allTouches?.first else { return }
         
-//        if(notebooks.count == 0){
-//             showError(title: "You haven't any notebook. Please create one before create a note")
-//            return
-//        }
-//
+        if(notebooks.count == 0){
+             showError(title: "You haven't any notebook. Please create one before create a note")
+            return
+        }
+
         
         //SHORT TAP
         if touch.tapCount == 1 {
             guard let defaultNotebook = CoreDataManager.shared.fetchDefaultNoteBook() else {return}
             let noteDetailVC = NoteDetailViewController(notebook: defaultNotebook, delegate: self)
             navigationController?.pushViewController(noteDetailVC, animated: true)
-            
             
          //LONG TAP
         } else if touch.tapCount == 0 {
@@ -108,7 +105,6 @@ class NoteTableViewController: UITableViewController {
             modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
             modalNotebookVC.delegate = self
             
-            
             present(modalNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
         }
     }
@@ -116,7 +112,6 @@ class NoteTableViewController: UITableViewController {
     @objc private func addNewNoteBookHandler(){
 
         let notebookOptions = UIAlertController(title: "Select action", message: "Choose an action to do with the notebook", preferredStyle: .actionSheet)
-        
         
         let addNotebookAction = UIAlertAction(title: "Add notebook", style: .default){
             (_) in
@@ -130,11 +125,9 @@ class NoteTableViewController: UITableViewController {
            
             self.modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Swipe the notebook to perform actions",forCreateNewNote:false)
             self.modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
-  
             self.present(self.modalNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
             
         }
-        
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
         
@@ -155,27 +148,11 @@ class NoteTableViewController: UITableViewController {
                 notes.append($0 as! Note)
             }
         }
-//        notebooks = []
-//
-//        notes.forEach{
-//            (note) in
-//            if !notebooks.contains(note.notebook!) {
-//                notebooks.append(note.notebook!)
-//
-//            }
-//        }
-        
         
     }
     
-    func numOfNotesFromNotebook(notebook: Notebook) -> Int{
-        var numOfNotes = 0
-        notes.forEach{
-            if($0.notebook == notebook){
-                numOfNotes += 1
-            }
-        }
-        return numOfNotes
-    }
+    //TODO: Closure without return
+    func numOfNotesFromNotebook(notebook: Notebook) -> Int{ return notes.filter{($0.notebook == notebook)}.count}
+    
 
 }

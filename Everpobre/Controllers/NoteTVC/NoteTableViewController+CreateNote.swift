@@ -9,9 +9,8 @@
 import Foundation
 
 extension NoteTableViewController:NoteDetailViewControllerDelegate{
+    
     func didDeleteNote(indexPath: IndexPath, note: Note) {
-        
-        let notebook = notebooks[indexPath.section]
 
         tableView.deleteRows(at: [indexPath], with: .top)
    
@@ -32,8 +31,7 @@ extension NoteTableViewController:NoteDetailViewControllerDelegate{
        
         guard let section = notebooks.index(of: note.notebook!) else {return}
         let row = numOfNotesFromNotebook(notebook: note.notebook!)
-
-        
+ 
         let indexPath = IndexPath(row: row, section: section)
         tableView.insertRows(at: [indexPath], with: .middle)
     }

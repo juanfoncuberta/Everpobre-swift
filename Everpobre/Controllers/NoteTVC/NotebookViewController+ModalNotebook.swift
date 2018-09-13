@@ -21,30 +21,20 @@ extension NoteTableViewController: ModalNotebookViewControllerDelegate{
                 indexPathArray.append(IndexPath(row: row + noteRow, section: section))
                 
             }
-            
-            
-
             tableView.insertRows(at: indexPathArray, with: .middle)
         }
     }
-    
 
-    
     func didNotebookDelete(notebook: Notebook) {
         let section = notebooks.index(of: notebook)
-        
         notebooks.remove(at: section!)
         tableView.deleteSections(IndexSet.init(integer: section!), with: .automatic)
 
     }
-    
-  
+
     
     func didNotebookSelect(notebook: Notebook) {
-        
         let noteDetailVC = NoteDetailViewController(notebook: notebook, delegate: self)
-
-        
         self.navigationController?.pushViewController(noteDetailVC, animated: true)
     }
     

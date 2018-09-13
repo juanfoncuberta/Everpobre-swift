@@ -18,41 +18,33 @@ extension NoteDetailViewController{
         guard let date = dateLabel.text else {return}
         let text = mainTextView.text ?? ""
         let address = addressLabel.text ?? ""
-
+        let arrayImage = imageArray
         if title.isEmpty {
             showError(title: "The note title can't be empty")
             return
         }
         //la nota se actualiza
         if indexPath != nil{
-            self.setNote(title: title, text: text, date: date, images:nil , address: address)
+            self.setNote(title: title, text: text, date: date, images:arrayImage , address: address )
             
-            
+              CoreDataManager.shared.updateNote(note: note!)
             if(originalNotebook != notebook ){
                 self.delegate?.didDeleteNote(indexPath: indexPath!,note: note!)
-                 CoreDataManager.shared.updateNote(note: note!)
                 self.delegate?.didAddNote(note: note!)
             }else{
-                 CoreDataManager.shared.updateNote(note: note!)
+               
                 self.delegate?.didUpdateNote( indexPath: indexPath!)
                 
             }
-            
-           
-           
-            
         
         //la note se crea
         }else{
             let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, address: address)
             
-            
             if(tuple.0 != nil){
                 self.delegate?.didAddNote(note: tuple.0!)
             }
         }
-
-        
         
         navigationController?.popViewController(animated: true)
        
@@ -61,10 +53,6 @@ extension NoteDetailViewController{
 
         let datePickerModal = ModalDatePickerViewController()
         datePickerModal.delegate = self
-        
-//        datePicker.frame = CGRect(x: 0.0, y: view.frame.height-250, width: view.frame.width, height: 250)
-//        datePicker.date = dateFormatter.date(from: dateLabel.text!)!
-//        showDatePicker(show: !datePickerOpened, animateTime: 0.5)
         self.present(datePickerModal,animated: true)
        
     }
@@ -87,11 +75,11 @@ extension NoteDetailViewController{
     }
     
     @objc  func handleDeleteNote(){
+        //TODO Delete note
         print("borrando")
     }
     
     @objc  func handleGeoPosition(){
-        print("getting geo pos...")
          let modalLocationViewController = ModalLocationViewController()
         modalLocationViewController.delegate = self
         present(modalLocationViewController.wrappedInNavigation(), animated: true)
@@ -102,29 +90,19 @@ extension NoteDetailViewController{
     
     @objc  func handleImageRotation(rotationGesture: UIRotationGestureRecognizer){
          currentImageIndex = imageArray.index(of: rotationGesture.view as! UIImageView)
-         self.view.bringSubview(toFront:  (rotationGesture.view)!)
+        self.view.bringSubview(toFront:  (rotationGesture.view)!)
+//          let location = rotationGesture.location(in: mainTextView)
         switch rotationGesture.state {
-        case .began:
-            relativePoint = rotationGesture.location(in:rotationGesture.view)
-            let location = rotationGesture.location(in: mainTextView)
-         
-            print(rotationGesture.rotation)
-//            leftImageConstraint.constant = location.x - relativePoint.x
-//            topImageConstraint.constant = location.y - relativePoint.y
-        case .changed:
-            print("changed")
-        
-//
-            rotationGesture.view?.transform  = CGAffineTransform(rotationAngle:  rotationGesture.rotation )
+            case .began:
+                relativePoint = rotationGesture.location(in:rotationGesture.view)
+            case .changed:
+                relativePoint = rotationGesture.location(in:rotationGesture.view)
+                rotationGesture.view?.transform  = CGAffineTransform(rotationAngle:  rotationGesture.rotation )
 
-            print(rotationGesture.rotation)
-           
-
-        case .ended:
-               imageArray[currentImageIndex].transform.rotated(by: rotationGesture.rotation)
-            print("ended")
-        default:
-            break
+            case .ended:
+                   imageArray[currentImageIndex].transform.rotated(by: rotationGesture.rotation)
+            default:
+                break
         }
 //        if let gestureView = rotationGesture.view {
 //            gestureView.transform = view.transform.rotated(by: rotationGesture.rotation)
@@ -136,24 +114,18 @@ extension NoteDetailViewController{
         currentImageIndex = imageArray.index(of: pinchGesture.view as! UIImageView)
 
         switch pinchGesture.state {
-        case .changed:
-           
-            pinchGesture.view?.transform = (pinchGesture.view?.transform)!.scaledBy(x: pinchGesture.scale, y: pinchGesture.scale)
-            pinchGesture.scale = 1
-        case .ended, .cancelled:
-            print("ended")
-            
-            imageArray[currentImageIndex].heightAnchor.constraint(equalTo: (pinchGesture.view?.heightAnchor)!)
-            imageArray[currentImageIndex].widthAnchor.constraint(equalTo: (pinchGesture.view?.widthAnchor)!)
-//            imageArray[currentImageIndex].topAnchor.constraint(equalTo: (pinchGesture.view?.topAnchor)!)
-//            imageArray[currentImageIndex].leftAnchor.constraint(equalTo: (pinchGesture.view?.leftAnchor)!)
-        //            gestureView.frame.heigh
-            
-            print("endpinch")
-            print( imageArray[currentImageIndex].frame.height)
-       
-        default:
-            print("default")
+            case .began:
+                    break
+            case .changed:
+                pinchGesture.view?.transform = (pinchGesture.view?.transform)!.scaledBy(x: pinchGesture.scale, y: pinchGesture.scale)
+                pinchGesture.scale = 1
+            case .ended, .cancelled:
+
+                imageArray[currentImageIndex].heightAnchor.constraint(equalTo: (pinchGesture.view?.heightAnchor)!)
+                imageArray[currentImageIndex].widthAnchor.constraint(equalTo: (pinchGesture.view?.widthAnchor)!)
+     
+            default:
+            break
         }
         
         
@@ -162,34 +134,21 @@ extension NoteDetailViewController{
     @objc  func handleMoveImage(longPressGesture: UILongPressGestureRecognizer){
         
         guard let gestureView = longPressGesture.view  else {return}
-        currentImageIndex = imageArray.index(of: longPressGesture.view as! UIImageView)
+        let imageView = longPressGesture.view as! UIImageView
+        currentImageIndex = imageArray.index(of:imageView)
         
         switch longPressGesture.state {
-        case .began:
-//            closekeyboard()
-            print("began")
-     
-            relativePoint = longPressGesture.location(in:gestureView)
-            
-        case .changed:
-            let location = longPressGesture.location(in: mainTextView)
-            print("changed")
-            print( imageArray[currentImageIndex].frame.height)
-            print(gestureView.frame.height)
-            longPressGesture.view?.transform   = CGAffineTransform(translationX: location.x - relativePoint.x , y:location.y - relativePoint.y  )
-//            leftImageConstraint.constant = location.x - relativePoint.x
-//            topImageConstraint.constant = location.y - relativePoint.y
-            
-            
-        case .ended, .cancelled:
-            imageArray[currentImageIndex].topAnchor.constraint(equalTo: (longPressGesture.view?.topAnchor)!)
-            imageArray[currentImageIndex].leftAnchor.constraint(equalTo: (longPressGesture.view?.leftAnchor)!)
-            
-//            UIView.animate(withDuration: 01, animations: {
-//                gestureView.transform = CGAffineTransform.init(scaleX:1,y:1)
-//            })
-        default:
-            break
+            case .began:
+                //TODO: Closekeyboard
+               //closekeyboard()
+                relativePoint = longPressGesture.location(in:gestureView)
+            case .changed:
+                let location = longPressGesture.location(in: mainTextView)
+                longPressGesture.view?.transform   = CGAffineTransform(translationX: location.x - relativePoint.x , y:location.y - relativePoint.y )
+            case .ended, .cancelled:
+                break
+            default:
+                break
         }
         
     }
@@ -202,18 +161,9 @@ extension NoteDetailViewController{
         
     }
     
-    //MARK: - datepicker handler
-//    func showDatePicker(show: Bool, animateTime: TimeInterval) {
-//        // set state variable
-//        self.closeKeyboard(views: textUIViews)
-//        datePickerOpened = show
-//        datePicker.isHidden = !show
-//
-//    }
-    
     //MARK: - notehandler
     
-    func setNote(title:String,text:String,date:String, images: [UIImage]?,address:String){
+    func setNote(title:String,text:String,date:String, images: [UIImageView]?,address:String){
         
         note?.title = title
         note?.text = text
@@ -221,9 +171,38 @@ extension NoteDetailViewController{
         note?.notebook = notebook
         note?.address = address
         
-        
+        CoreDataManager.shared.createImages(images: images!,note: note!)
+      
+       
+       
     }
     
-//(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, latitude: nil, longitude: nil)
+    func setUpImages(images:NSSet){
+        
+        images.allObjects.forEach{
+            let image = $0 as! Image
+             let imageView = UIImageView()
+            imageView.image = UIImage(data: image.imageData!)
+            view.addSubview(imageView)
+              print("Images count \(image.width)")
+              print("Images count \(image.height)")
+            imageView.frame = CGRect(x: image.position_x, y: image.position_y, width: Double(100), height: Double(100))
+           // imageView.frame = CGRect(x: (image.position_x), y: (image.position_y), width: image.width , height: image.height )
+            imageView.isUserInteractionEnabled = true
+            //imageView.addGestureRecognizer( UIPinchGestureRecognizer(target: self, action: #selector(handleImagePinch)))
+            //imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: #selector(handleImageRotation)))
+            imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleMoveImage)))
+            
+           
+            imageArray.append(imageView)
+      
+            
+           
+        }
+
+        
+    
+    }
+
     
 }

@@ -46,8 +46,6 @@ class CreateNotebookViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        
-        
     }
 
 

@@ -22,14 +22,12 @@ class ModalDatePickerViewController: UIViewController{
         return dp
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDatePicker()
 
         
     }
-
     private func setupDatePicker(){
         view.backgroundColor = UIColor(white:1,alpha:0.2)
       
@@ -48,10 +46,7 @@ class ModalDatePickerViewController: UIViewController{
         datePicker.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         datePicker.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         datePicker.heightAnchor.constraint(equalToConstant: 200).isActive = true
-//        datePicker.frame = CGRect(x: 0.0, y: view.frame.height-250, width: view.frame.width, height: 250)
-//                datePicker.date = dateFormatter.date(from: dateLabel.text!)!
-        
-        
+ 
         let stackViewContainer = UIView()
         view.addSubview(stackViewContainer)
         stackViewContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -77,17 +72,13 @@ class ModalDatePickerViewController: UIViewController{
         doneButton.rightAnchor.constraint(equalTo: stackViewContainer.rightAnchor, constant: -20).isActive = true
         doneButton.centerYAnchor.constraint(equalTo: stackViewContainer.centerYAnchor).isActive = true
         doneButton.heightAnchor.constraint(equalToConstant: 10).isActive = true
-//        doneButton.topAnchor.constraint(equalTo: stackViewContainer.topAnchor, constant: 5).isActive = true
         doneButton.tintColor = .blue
-//        doneButton.frame = CGRect(x: stackViewContainer.frame.width - 30, y: stackViewContainer.frame.origin.y + 5, width: 20, height: 20)
         doneButton.addTarget(self, action: #selector(handleSaveDate), for: .touchUpInside)
       
         doneButton.setTitleColor(UIColor.blue, for: .normal)
         
     }
-    
-    
-    
+
     @objc func handleSaveDate(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
