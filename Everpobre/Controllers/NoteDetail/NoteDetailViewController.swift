@@ -19,19 +19,22 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
     //MARK: - Properties
     var note:Note?{
         didSet{
+           
             titleTextField.text = note?.title
             notebookNameLabel.text = note?.notebook?.name
-            dateLabel.text = dateFormatter.string(from: (note?.date)!)
+            dateLabel.text =  dateFormatter.string(from: (note?.date)!)
             mainTextView.text = note?.text
             addressLabel.text = note?.address
-            if note?.address != nil {
-                
-            }
-            
             self.setUpImages(images: (note?.image)!)
-      
+           
 
         }
+    }
+    
+    func setDate() -> String{
+        guard let note = note else {return dateFormatter.string(from: (Date()))}
+        
+        return dateFormatter.string(from: note.date!)
     }
 
 
@@ -129,10 +132,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         
         return dLabel
         }(){
-        didSet{
-           
-            note?.date =  dateFormatter.date(from: dateLabel.text!)
-        }
+        didSet{}
     }
     let titleAddressLabel: UILabel = {
         let titleAddressLab = UILabel()

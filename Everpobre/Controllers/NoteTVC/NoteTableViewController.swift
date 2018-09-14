@@ -64,6 +64,7 @@ class NoteTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let noteDetailVC = NoteDetailViewController(notebook: notebooks[indexPath.section], delegate: self,indexPath:indexPath)
         let currentNotes =  Array(notebooks[indexPath.section].note!) as! [Note]
+        let n = currentNotes[indexPath.row]
        noteDetailVC.note = currentNotes[indexPath.row]
         navigationController?.pushViewController(noteDetailVC, animated: true)
         

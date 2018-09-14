@@ -12,11 +12,7 @@ typealias notebookCompletion = (Notebook,NSManagedObjectContext)->()
 
 struct CoreDataManager{
     static let shared = CoreDataManager()
-    
-  
-    
 
-    
     let persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "Everpobre")
@@ -208,7 +204,7 @@ struct CoreDataManager{
          note.notebook = notebook
         note.address = address
         self.createImages(images: images!, note: note)
-        
+
     
         do {
             try context.save()

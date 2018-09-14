@@ -15,7 +15,7 @@ extension NoteDetailViewController{
     //MARK: - outlet handlers
     @objc  func handleSave(){
         guard let title = titleTextField.text else {return}
-        guard let date = dateLabel.text else {return}
+        guard let date = dateFormatter.date(from: dateLabel.text!)  else {return}
         let text = mainTextView.text ?? ""
         let address = addressLabel.text ?? ""
         let arrayImage = imageArray
@@ -41,7 +41,7 @@ extension NoteDetailViewController{
         
         //la note se crea
         }else{
-            let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: arrayImage, address: address )
+            let tuple = CoreDataManager.shared.createNote(title: title, date:date, notebook: self.notebook!, text: text , images: arrayImage, address: address )
             
             if(tuple.0 != nil){
                 self.delegate?.didAddNote(note: tuple.0!)
@@ -165,11 +165,11 @@ extension NoteDetailViewController{
     
     //MARK: - notehandler
     
-    func setNote(title:String,text:String,date:String, images: [UIImageView]?,address:String){
+    func setNote(title:String,text:String,date:Date, images: [UIImageView]?,address:String){
         
         note?.title = title
         note?.text = text
-        note?.date = dateFormatter.date(from: date)
+        note?.date = date
         note?.notebook = notebook
         note?.address = address
         CoreDataManager.shared.updateNote(note:note!)

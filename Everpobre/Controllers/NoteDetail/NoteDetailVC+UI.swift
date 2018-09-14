@@ -108,7 +108,7 @@ extension NoteDetailViewController{
         let tap = UITapGestureRecognizer(target: self, action: #selector(showDatePickerHandler))
         dateLabel.isUserInteractionEnabled = true
         dateLabel.addGestureRecognizer(tap)
-        dateLabel.text =  dateFormatter.string(from: Date())
+        dateLabel.text =  self.setDate()
         
         
         titleNotebookNameLabel.textColor = .black
