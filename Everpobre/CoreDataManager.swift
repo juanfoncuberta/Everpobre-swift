@@ -207,6 +207,8 @@ struct CoreDataManager{
         note.text = text
          note.notebook = notebook
         note.address = address
+        self.createImages(images: images!, note: note)
+        
     
         do {
             try context.save()
@@ -274,14 +276,9 @@ struct CoreDataManager{
             
             
         }
-        
-        //TODO: merge photos, not replace them
-        //TODO: Eliminar if
-        if(imageArray.count > 0){
+
             note.image = NSSet(array: imageArray)
 
-        }
-        
         do{
             try context.save()
             

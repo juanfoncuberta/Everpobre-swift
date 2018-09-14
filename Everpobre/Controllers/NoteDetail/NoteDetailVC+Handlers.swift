@@ -23,6 +23,8 @@ extension NoteDetailViewController{
             showError(title: "The note title can't be empty")
             return
         }
+ 
+        
         //la nota se actualiza
         if indexPath != nil{
             self.setNote(title: title, text: text, date: date, images:arrayImage , address: address )
@@ -39,7 +41,7 @@ extension NoteDetailViewController{
         
         //la note se crea
         }else{
-            let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: nil, address: address)
+            let tuple = CoreDataManager.shared.createNote(title: title, date: Date(), notebook: self.notebook!, text: text , images: arrayImage, address: address )
             
             if(tuple.0 != nil){
                 self.delegate?.didAddNote(note: tuple.0!)
@@ -170,7 +172,7 @@ extension NoteDetailViewController{
         note?.date = dateFormatter.date(from: date)
         note?.notebook = notebook
         note?.address = address
-        
+        CoreDataManager.shared.updateNote(note:note!)
         CoreDataManager.shared.createImages(images: images!,note: note!)
       
        
@@ -178,14 +180,12 @@ extension NoteDetailViewController{
     }
     
     func setUpImages(images:NSSet){
-        
+
         images.allObjects.forEach{
             let image = $0 as! Image
              let imageView = UIImageView()
             imageView.image = UIImage(data: image.imageData!)
             view.addSubview(imageView)
-              print("Images count \(image.width)")
-              print("Images count \(image.height)")
             imageView.frame = CGRect(x: image.position_x, y: image.position_y, width: Double(100), height: Double(100))
            // imageView.frame = CGRect(x: (image.position_x), y: (image.position_y), width: image.width , height: image.height )
             imageView.isUserInteractionEnabled = true

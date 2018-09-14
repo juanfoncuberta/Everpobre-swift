@@ -24,12 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let noteTVC = NoteTableViewController()
 
         noteTNavigation = noteTVC.wrappedInNavigation()
+      
 
         mainVC = UIViewController()
         if UIDevice.current.userInterfaceIdiom == .pad{
             splitVC = UISplitViewController()
-            splitVC.viewControllers = [noteTNavigation]
-//            splitVC.viewControllers = [noteTNavigation, noteDetailNavigation]
+              noteDetailNavigation = UINavigationController()
+//            splitVC.viewControllers = [noteTNavigation]
+            splitVC.preferredDisplayMode = .allVisible
+            splitVC.viewControllers = [noteTNavigation, noteDetailNavigation.wrappedInNavigation()]
             mainVC = splitVC
         }else if UIDevice.current.userInterfaceIdiom == .phone{
             mainVC = noteTNavigation

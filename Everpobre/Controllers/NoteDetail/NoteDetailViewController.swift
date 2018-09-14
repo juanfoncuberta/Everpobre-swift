@@ -24,6 +24,9 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
             dateLabel.text = dateFormatter.string(from: (note?.date)!)
             mainTextView.text = note?.text
             addressLabel.text = note?.address
+            if note?.address != nil {
+                
+            }
             
             self.setUpImages(images: (note?.image)!)
       
@@ -181,6 +184,7 @@ class NoteDetailViewController: UIViewController, UIImagePickerControllerDelegat
         view.backgroundColor = .lightBlue
                 
         setupUI()
+      
         notebookNameLabel.text = notebook?.name
     }
     
