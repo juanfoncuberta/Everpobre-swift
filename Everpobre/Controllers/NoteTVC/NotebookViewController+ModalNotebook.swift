@@ -35,7 +35,8 @@ extension NoteTableViewController: ModalNotebookViewControllerDelegate{
     
     func didNotebookSelect(notebook: Notebook) {
         let noteDetailVC = NoteDetailViewController(notebook: notebook, delegate: self)
-        self.navigationController?.pushViewController(noteDetailVC, animated: true)
+            self.splitViewController?.showDetailViewController(noteDetailVC.wrappedInNavigation(), sender: self)
+//        self.navigationController?.pushViewController(noteDetailVC, animated: true)
     }
     
     

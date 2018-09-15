@@ -66,7 +66,7 @@ extension ModalNotebookViewController: UITableViewDataSource{
     //MARK: - handlers tableviewdelegate
     private func deleteNotebookHandler(action:UITableViewRowAction,indexPath: IndexPath){
         
-           let deleteOptions = UIAlertController(title: "Select action", message: "What you want to do with the notes?", preferredStyle: .actionSheet)
+           let deleteOptions = UIAlertController(title: "Select action", message: "What you want to do with the notes?", preferredStyle: (UIDevice.current.userInterfaceIdiom == .pad) ? .alert : .actionSheet)
     
         let notebooksListAction = UIAlertAction(title:"Delete", style: .default){
             

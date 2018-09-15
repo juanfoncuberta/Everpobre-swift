@@ -141,8 +141,7 @@ extension NoteDetailViewController{
         
         switch longPressGesture.state {
             case .began:
-                //TODO: Closekeyboard
-               //closekeyboard()
+                self.closeKeyboard()
                 relativePoint = longPressGesture.location(in:gestureView)
             case .changed:
                 let location = longPressGesture.location(in: mainTextView)

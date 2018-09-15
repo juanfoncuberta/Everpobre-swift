@@ -21,14 +21,14 @@ extension UIViewController{
         present(alertController, animated: true, completion: nil)
     }
     
-    
-    func closeKeyboard(views: [UIView]){
-        
-        views.forEach{ (view) in
-            if(view.isFirstResponder){
-                view.resignFirstResponder()
-            }
-        }
+    func closeKeyboard(){
+//    func closeKeyboard(views: [UIView]){
+        view.endEditing(true)
+//        views.forEach{ (view) in
+//            if(view.isFirstResponder){
+//                view.resignFirstResponder()
+//            }
+//        }
     }
 
     
