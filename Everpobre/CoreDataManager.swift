@@ -117,6 +117,7 @@ struct CoreDataManager{
         let fetchRequest = NSFetchRequest<Notebook>(entityName: coreDataNames.Notebook.rawValue)
         fetchRequest.predicate = predicate
         
+        
         do {
             let notebook = try context.fetch(fetchRequest) as [Notebook]
             //check if a notebook exists

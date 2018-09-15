@@ -64,9 +64,9 @@ class NoteTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let noteDetailVC = NoteDetailViewController(notebook: notebooks[indexPath.section], delegate: self,indexPath:indexPath)
         let currentNotes =  Array(notebooks[indexPath.section].note!) as! [Note]
-        let n = currentNotes[indexPath.row]
        noteDetailVC.note = currentNotes[indexPath.row]
-        navigationController?.pushViewController(noteDetailVC, animated: true)
+        self.splitViewController?.showDetailViewController(noteDetailVC.wrappedInNavigation(), sender: self)
+//        navigationController?.pushViewController(noteDetailVC, animated: true)
         
     }
     
@@ -97,8 +97,8 @@ class NoteTableViewController: UITableViewController {
         if touch.tapCount == 1 {
             guard let defaultNotebook = CoreDataManager.shared.fetchDefaultNoteBook() else {return}
             let noteDetailVC = NoteDetailViewController(notebook: defaultNotebook, delegate: self)
-            navigationController?.pushViewController(noteDetailVC, animated: true)
-            
+//            navigationController?.pushViewController(noteDetailVC, animated: true)
+                self.splitViewController?.showDetailViewController(noteDetailVC.wrappedInNavigation(), sender: self)
          //LONG TAP
         } else if touch.tapCount == 0 {
 
@@ -112,32 +112,37 @@ class NoteTableViewController: UITableViewController {
     
     @objc private func addNewNoteBookHandler(){
 
-        let notebookOptions = UIAlertController(title: "Select action", message: "Choose an action to do with the notebook", preferredStyle: .actionSheet)
+        
+        let notebookOptions = UIAlertController(title: "Select action", message: "Choose an action to do with the notebook", preferredStyle: (UIDevice.current.userInterfaceIdiom == .pad) ? .alert : .actionSheet)
         
         let addNotebookAction = UIAlertAction(title: "Add notebook", style: .default){
             (_) in
-            
+
             let createNotebookVC = CreateNotebookViewController()
             createNotebookVC.delegate = self
             self.present(createNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
         }
-        let notebooksListAction = UIAlertAction(title:"Notebooks", style: .default){
+   
+        let notebooksListAction = UIAlertAction(title:"Manage notebooks", style: .default){
             (_) in
-           
+
             self.modalNotebookVC = ModalNotebookViewController(delegate: self, titleText: "Swipe the notebook to perform actions",forCreateNewNote:false)
             self.modalNotebookVC.notebooks = CoreDataManager.shared.fetchNotebooks()
             self.present(self.modalNotebookVC.wrappedInNavigation(), animated: true, completion: nil)
-            
+
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-        
         notebookOptions.addAction(addNotebookAction)
         notebookOptions.addAction(notebooksListAction)
         notebookOptions.addAction(cancelAction)
         
-        present(notebookOptions,animated: true,completion: nil)
+        self.present(notebookOptions,animated: true,completion: nil)
 
+    }
+    
+    @objc func notebookAlertHandler(_: UIAlertAction){
+        
     }
     
     //MARK: - data handlers
